@@ -1,0 +1,7 @@
+launchSettings.json
+UpgradeLog.htm
+/.vs/*
+/test/NUnitToXunit.Tests/obj
+/src/NUnitToXUnit/obj
+/src/NUnitToXUnit/bin/Debug/netcoreapp1.1
+/test/NUnitToXunit.Tests/bin/Debug/netcoreapp2.0

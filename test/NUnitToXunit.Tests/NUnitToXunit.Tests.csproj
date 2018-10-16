@@ -1,0 +1,187 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ExpectedExceptionTests\ToAssertThrowsString\Input.cs" />
+    <Compile Remove="MemberAccessTests\HasMember\Expected.cs" />
+    <Compile Remove="MemberAccessTests\HasMember\Input.cs" />
+    <Compile Remove="MemberAccessTests\CompareOperaterAssertion\Expected.cs" />
+    <Compile Remove="MemberAccessTests\CompareOperaterAssertion\Input.cs" />
+    <Compile Remove="MemberAccessTests\ThatAssertionsCollection\Expected.cs" />
+    <Compile Remove="MemberAccessTests\ThatAssertionsCollection\Input.cs" />
+    <Compile Remove="MemberAccessTests\ThatAssertionsWithCompareOperator\Expected.cs" />
+    <Compile Remove="MemberAccessTests\ThatAssertionsWithCompareOperator\Input.cs" />
+    <Compile Remove="MemberAccessTests\ThatAssertionsWithGenericType\Expected.cs" />
+    <Compile Remove="MemberAccessTests\ThatAssertionsWithGenericType\Input.cs" />
+    <Compile Remove="MemberAccessTests\ThatAssertionWithStringContaining\Expected.cs" />
+    <Compile Remove="TestAttributeTests\ToFact\Expected.cs" />
+    <Compile Remove="TestAttributeTests\ToFact\Input.cs" />
+    <Compile Remove="TestFixtureTests\ToXUnitClass\Expected.cs" />
+    <Compile Remove="TestFixtureTests\ToXUnitClass\Input.cs" />
+    <Compile Remove="CategoryTests\ToTrait\Expected.cs" />
+    <Compile Remove="CategoryTests\ToTrait\Input.cs" />
+    <Compile Remove="ExpectedExceptionTests\ToAssertThrowsStringList\Expected.cs" />
+    <Compile Remove="ExpectedExceptionTests\ToAssertThrowsStringList\Input.cs" />
+    <Compile Remove="ExpectedExceptionTests\ToAssertThrowsTypeOfList\Expected.cs" />
+    <Compile Remove="ExpectedExceptionTests\ToAssertThrowsTypeOfList\Input.cs" />
+    <Compile Remove="ExpectedExceptionTests\ToAssertThrowsTypeOf\Expected.cs" />
+    <Compile Remove="ExpectedExceptionTests\ToAssertThrowsTypeOf\Input.cs" />
+    <Compile Remove="ExpectedExceptionTests\ToAssertThrowsString\Expected.cs" />
+    <Compile Remove="MemberAccessTests\ThatAssertionsWithUnhandled\Expected.cs" />
+    <Compile Remove="MemberAccessTests\ThatAssertionsWithUnhandled\Input.cs" />
+    <Compile Remove="MemberAccessTests\ThatAssertions\Expected.cs" />
+    <Compile Remove="MemberAccessTests\ThatAssertions\Input.cs" />
+    <Compile Remove="MemberAccessTests\ThatAssertionWithStringContaining\Input.cs" />
+    <Compile Remove="MemberAccessTests\XUnitAssertion\Expected.cs" />
+    <Compile Remove="MemberAccessTests\XUnitAssertion\Input.cs" />
+    <Compile Remove="TestAttributeTests\ToTheory\Expected.cs" />
+    <Compile Remove="TestAttributeTests\ToTheory\Input.cs" />
+    <Compile Remove="TestCaseTests\ToInlineData\Expected.cs" />
+    <Compile Remove="TestCaseTests\ToInlineData\Input.cs" />
+    <Compile Remove="NUnitUsingTests\ToXUnitUsing\Expected.cs" />
+    <Compile Remove="NUnitUsingTests\ToXUnitUsing\Input.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="MemberAccessTests\CompareOperaterAssertion\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\CompareOperaterAssertion\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\HasMember\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\HasMember\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\ThatAssertionsCollection\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\ThatAssertionsCollection\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\ThatAssertionsWithCompareOperator\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\ThatAssertionsWithCompareOperator\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\ThatAssertionsWithGenericType\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\ThatAssertionWithStringContaining\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestAttributeTests\ToFact\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestAttributeTests\ToFact\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestFixtureTests\ToXUnitClass\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestFixtureTests\ToXUnitClass\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CategoryTests\ToTrait\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CategoryTests\ToTrait\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ExpectedExceptionTests\ToAssertThrowsStringList\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ExpectedExceptionTests\ToAssertThrowsStringList\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ExpectedExceptionTests\ToAssertThrowsString\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ExpectedExceptionTests\ToAssertThrowsString\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ExpectedExceptionTests\ToAssertThrowsTypeOfList\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ExpectedExceptionTests\ToAssertThrowsTypeOfList\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ExpectedExceptionTests\ToAssertThrowsTypeOf\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ExpectedExceptionTests\ToAssertThrowsTypeOf\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\ThatAssertionsWithUnhandled\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\ThatAssertionsWithUnhandled\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\ThatAssertions\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\ThatAssertions\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\ThatAssertionWithStringContaining\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\XUnitAssertion\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\XUnitAssertion\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestAttributeTests\ToTheory\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestAttributeTests\ToTheory\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestCaseTests\ToInlineData\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestCaseTests\ToInlineData\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NUnitUsingTests\ToXUnitUsing\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="NUnitUsingTests\ToXUnitUsing\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="MemberAccessTests\ThatAssertionsWithGenericType\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="MemberAccessTests\CompareOperaterAssertion\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="2.4.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0-preview-20170628-02" />
+    <PackageReference Include="xunit" Version="2.2.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NUnitToXUnit\NUnitToXUnit.csproj" />
+  </ItemGroup>
+
+</Project>
