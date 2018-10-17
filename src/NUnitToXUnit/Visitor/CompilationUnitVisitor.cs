@@ -22,6 +22,8 @@ namespace NUnitToXUnit.Visitor
         public override SyntaxNode VisitCompilationUnit(CompilationUnitSyntax node)
         {
             var xunitTree = (CompilationUnitSyntax)base.VisitCompilationUnit(node);
+            var leadingTrivia = xunitTree.GetLeadingTrivia();
+            xunitTree = xunitTree.WithoutLeadingTrivia();
             var additionalUsings = new List<UsingDirectiveSyntax>();
 
             if (_options.RequiresSystemImport)
@@ -34,6 +36,7 @@ namespace NUnitToXUnit.Visitor
             }
 
             var newTree = xunitTree.AddUsings(additionalUsings.ToArray());
+            newTree = newTree.WithLeadingTrivia(leadingTrivia);
             return _options.ConvertAssert ? newTree.RemoveNUnitUsing() : base.VisitCompilationUnit(newTree);
         }
     }
