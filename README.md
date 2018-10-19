@@ -6,6 +6,9 @@
 
 > A nUnit-to-xUnit test converter powered by roslyn. 
 
+
+AppVeyor:[![Build status](https://ci.appveyor.com/api/projects/status/93fxd1lwq4awcyl6/branch/master?svg=true)](https://ci.appveyor.com/project/aixasz/nunittoxunit-abtp1/branch/master)
+
 # Contribute
 Some of the best ways to contribute are to try things out and installing these Visual Studio extensions:
 - [Format document on Save](https://marketplace.visualstudio.com/items?itemName=mynkow.FormatdocumentonSave)
