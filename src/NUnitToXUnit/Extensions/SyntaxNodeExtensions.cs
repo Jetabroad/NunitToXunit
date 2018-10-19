@@ -24,7 +24,7 @@ namespace NUnitToXUnit.Extensions
         {
             var nUnitUsing = node.Usings.SingleOrDefault(IsNUnitUsing);
             if (nUnitUsing == null) return node;
-            return node.RemoveNode(nUnitUsing, SyntaxRemoveOptions.KeepNoTrivia);
+            return node.RemoveNode(nUnitUsing, SyntaxRemoveOptions.KeepLeadingTrivia);
         }
     }
 }
