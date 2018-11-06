@@ -34,7 +34,11 @@ namespace NUnitToXUnit.Visitor
             var expectedExceptionAttribute = method.GetExpectedExceptionAttribute();
             var attributeArgument = expectedExceptionAttribute.GetExpectedExceptionAttributeArgument();
 
-            if (attributeArgument.IsExceptionMessage())
+            if (attributeArgument == null)
+            {
+                return CreateMethodFromExceptionType(attributeArgument, method, nameof(System.Exception));
+            }
+            else if (attributeArgument.IsExceptionMessage())
             {
                 return CreateMethodFromExceptionMessage(attributeArgument, method);
             }
@@ -72,9 +76,9 @@ namespace NUnitToXUnit.Visitor
             return ParseStatement($"Assert.Equal({ exceptionMessage }, exception.Message);").NormalizeWhitespace();
         }
 
-        private static MethodDeclarationSyntax CreateMethodFromExceptionType(AttributeArgumentSyntax attributeArgument, MethodDeclarationSyntax node)
+        private static MethodDeclarationSyntax CreateMethodFromExceptionType(AttributeArgumentSyntax attributeArgument, MethodDeclarationSyntax node, string overrideExceptionType = null)
         {
-            var exceptionType = attributeArgument.GetExceptionType();
+            var exceptionType = overrideExceptionType ?? attributeArgument.GetExceptionType();
             var rawStatement = CreateAssert(exceptionType, node);
             return ReplaceMethodBody(rawStatement, node);
         }

@@ -14,7 +14,7 @@ namespace NUnitToXUnit.Extensions
             node.Expression.ChildNodes().First().ToString();
 
         public static AttributeArgumentSyntax GetExpectedExceptionAttributeArgument(this AttributeSyntax node) =>
-            node.ArgumentList.Arguments.First();
+            node.ArgumentList?.Arguments.FirstOrDefault();
 
         public static bool IsExceptionMessage(this AttributeArgumentSyntax node) =>
             node.Expression is LiteralExpressionSyntax;
