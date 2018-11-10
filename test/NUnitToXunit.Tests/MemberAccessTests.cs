@@ -14,7 +14,6 @@ namespace NUnitToXunit.Tests
         [InlineData(nameof(MemberAccessTests), "ThatAssertionsWithUnhandled")]
         [InlineData(nameof(MemberAccessTests), "ThatAssertionWithStringContaining")]
         [InlineData(nameof(MemberAccessTests), "ThatAssertionsWithGenericType")]
-        [InlineData(nameof(MemberAccessTests), "ThatAssertionsWithGenericType")]
         [InlineData(nameof(MemberAccessTests), "ThatAssertionsCollection")]
         [InlineData(nameof(MemberAccessTests), "CompareOperaterAssertion")]
         [InlineData(nameof(MemberAccessTests), "ThatAssertionsWithCompareOperator")]
