@@ -7,7 +7,7 @@ namespace NUnitToXUnit.Testing
     {
         [Test]
         public void AssertionTest()
-        {            
+        {
             Assert.That("Hello World", Is.StringContaining("World"));
             Assert.That("Hello World", Is.StringContaining("WORLD").IgnoreCase);
 

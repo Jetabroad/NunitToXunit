@@ -26,9 +26,8 @@ namespace NUnitToXunit.Tests
             // system under test
             var actualTransformation = new NUnitToXUnitVisitor(new DefaultOption { ConvertAssert = true }).Visit(input);
 
-            // convert nodes to string so we can assert on them
-            var expected = expectedTransformation.NormalizeWhitespace().ToFullString();
-            var actual = actualTransformation.NormalizeWhitespace().ToFullString();
+            var expected = expectedTransformation.ToFullString();
+            var actual = actualTransformation.ToFullString();
 
             Assert.Equal(expected, actual);
         }

@@ -21,11 +21,11 @@ namespace NUnitToXUnit.Visitor
             return base.VisitInvocationExpression(ReplaceInvocationExpression(node));
         }
 
-        private static InvocationExpressionSyntax ReplaceInvocationExpression(InvocationExpressionSyntax node)
+        private static InvocationExpressionSyntax ReplaceInvocationExpression(InvocationExpressionSyntax originalNode)
         {
-            node = ReplaceFailAssert(node);
+            var node = ReplaceFailAssert(originalNode);
             node = ReplaceThatAssert(node);
-            return ReplaceCompareOperationAssert(node);
+            return ReplaceCompareOperationAssert(node).WithTriviaFrom(originalNode);
         }
 
         private static InvocationExpressionSyntax ReplaceFailAssert(InvocationExpressionSyntax node) =>
@@ -39,7 +39,7 @@ namespace NUnitToXUnit.Visitor
             var falseArgument = Argument(LiteralExpression(SyntaxKind.FalseLiteralExpression));
             var assertArguments = node.ArgumentList.Arguments.Insert(0, falseArgument);
             var expression = CreateAssertMemberAccessExpression("True");
-            return InvocationExpression(expression, ArgumentList(assertArguments));
+            return InvocationExpression(expression, ArgumentList(assertArguments)).NormalizeWhitespace();
         }
 
         private static InvocationExpressionSyntax ReplaceThatAssert(InvocationExpressionSyntax node)
@@ -60,12 +60,14 @@ namespace NUnitToXUnit.Visitor
             ArgumentSyntax actualArgument)
         {
             return InvocationExpression(
-                    MemberAccessExpression(
-                        SyntaxKind.SimpleMemberAccessExpression,
-                        IdentifierName("Assert").WithTriviaFrom(node),
-                        IdentifierName(ThatAssertionsSingleArgument[assertExpression.ToString()])
-                    ),
-                    ArgumentList(SingletonSeparatedList(actualArgument)));
+                MemberAccessExpression(
+                    SyntaxKind.SimpleMemberAccessExpression,
+                    IdentifierName("Assert").WithTriviaFrom(node),
+                    IdentifierName(ThatAssertionsSingleArgument[assertExpression.ToString()])
+                ),
+                ArgumentList(SingletonSeparatedList(actualArgument))
+            )
+            .NormalizeWhitespace();
         }
 
         private static InvocationExpressionSyntax TryReplaceInvocationExpression(
@@ -73,7 +75,8 @@ namespace NUnitToXUnit.Visitor
             ExpressionSyntax assertExpression,
             ArgumentSyntax actualArgument)
         {
-            return ReplaceInvocationExpressionCompareArgument(assertExpression, actualArgument) ?? node;
+            return ReplaceInvocationExpressionCompareArgument(assertExpression, actualArgument)?.NormalizeWhitespace().WithTriviaFrom(node)
+                ?? node;
         }
 
         /// <summary>
@@ -227,7 +230,7 @@ namespace NUnitToXUnit.Visitor
             var argumentList = ArgumentList(SeparatedList(new[]
             {
                 Argument(BinaryExpression(syntax, left.Expression, right.Expression))
-            }));
+            })).NormalizeWhitespace();
 
             return InvocationExpression(assertExpression, argumentList);
         }
