@@ -3,6 +3,7 @@
 
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace NUnitToXUnit.Extensions
@@ -25,6 +26,18 @@ namespace NUnitToXUnit.Extensions
             var nUnitUsing = node.Usings.SingleOrDefault(IsNUnitUsing);
             if (nUnitUsing == null) return node;
             return node.RemoveNode(nUnitUsing, SyntaxRemoveOptions.KeepLeadingTrivia);
+        }
+
+        public static IReadOnlyCollection<MethodDeclarationSyntax> FindMethodWithAttribute(this ClassDeclarationSyntax node, string attributeName)
+        {
+            return node.DescendantNodes()
+                .OfType<MethodDeclarationSyntax>()
+                .Where(method => method
+                    .AttributeLists
+                    .SelectMany(list => list.Attributes)
+                    .Any(attr => attr.Name.ToString() == attributeName)
+                )
+                .ToList();
         }
     }
 }

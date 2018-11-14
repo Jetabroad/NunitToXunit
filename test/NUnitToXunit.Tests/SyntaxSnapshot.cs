@@ -24,7 +24,7 @@ namespace NUnitToXunit.Tests
             var expectedTransformation = ReadCSharpFile(Path.Combine(testCategory, testCase, "Expected.cs"));
 
             // system under test
-            var actualTransformation = new NUnitToXUnitVisitor(new DefaultOption { ConvertAssert = true }).Visit(input);
+            var actualTransformation = new NUnitToXUnitVisitor(new Options { ConvertAssert = true }).Visit(input);
 
             var expected = expectedTransformation.ToFullString();
             var actual = actualTransformation.ToFullString();

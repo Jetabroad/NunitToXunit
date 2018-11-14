@@ -28,16 +28,16 @@ namespace NUnitToXUnit.Visitor
                 return base.VisitAttributeList(node);
             }
 
-            _options.RequiresXUnitImport = true;
+            requires.XUnit = true;
 
             // only one attribute in the list (e.g. [TestFixture] ), remove the entire list.
             if (node.Attributes.Count == 1)
             {
-                return null;
+                return NullAttributeList(node);
             }
 
             // multiple attributes in a list (e.g. [TestFixture, DataContract] ), remove only the TestFixture attribute.
-            var newList = node.RemoveNode(testFixture, SyntaxRemoveOptions.KeepNoTrivia);
+            var newList = node.RemoveNode(testFixture, SyntaxRemoveOptions.KeepExteriorTrivia);
             return base.VisitAttributeList(newList);
         }
 
@@ -86,6 +86,35 @@ namespace NUnitToXUnit.Visitor
         private static AttributeSyntax ReplaceTestCaseByInlineData(AttributeSyntax node)
         {
             return Attribute(ParseName("Xunit.InlineData"), node.ArgumentList);
+        }
+
+        /// <summary>
+        /// Return a "null attribute list" that only has trivia, no actual syntax.
+        /// This is used when we want to remove an attribute list but keep nearby comments
+        /// (e.g. the class documentation comments that can appear above an attribute).
+        /// If we just used "null" we would lose those comments.
+        /// </summary>
+        private static SyntaxNode NullAttributeList(AttributeListSyntax node)
+        {
+            return AttributeList(
+                MissingToken(SyntaxKind.OpenBracketToken),
+                null, new SeparatedSyntaxList<AttributeSyntax>(),
+                MissingToken(SyntaxKind.CloseBracketToken)
+            )
+            // get rid of the indentation that would appear between the attribute list and the
+            // doc comments, but we still want the indentation before the doc comments.
+            .WithLeadingTrivia(
+                node
+                    .GetLeadingTrivia()
+                    .Reverse()
+                    .SkipWhile(t => t.Kind() == SyntaxKind.WhitespaceTrivia)
+                    .Reverse()
+            )
+            .WithTrailingTrivia(
+                node
+                    .GetTrailingTrivia()
+                    .Where(t => t.Kind() != SyntaxKind.EndOfLineTrivia)
+            );
         }
     }
 }

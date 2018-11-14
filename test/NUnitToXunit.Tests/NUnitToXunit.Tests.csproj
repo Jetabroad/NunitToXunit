@@ -41,8 +41,8 @@
     <Compile Remove="MemberAccessTests\ThatAssertionWithStringContaining\Input.cs" />
     <Compile Remove="MemberAccessTests\XUnitAssertion\Expected.cs" />
     <Compile Remove="MemberAccessTests\XUnitAssertion\Input.cs" />
-    <Compile Remove="TestAttributeTests\ToTheory\Expected.cs" />
-    <Compile Remove="TestAttributeTests\ToTheory\Input.cs" />
+    <Compile Remove="TestCaseSourceTests\ToMemberData\Expected.cs" />
+    <Compile Remove="TestCaseSourceTests\ToMemberData\Input.cs" />
     <Compile Remove="TestCaseTests\ToInlineData\Expected.cs" />
     <Compile Remove="TestCaseTests\ToInlineData\Input.cs" />
     <Compile Remove="NUnitUsingTests\ToXUnitUsing\Expected.cs" />
@@ -149,10 +149,10 @@
     <Content Include="MemberAccessTests\XUnitAssertion\Input.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestAttributeTests\ToTheory\Expected.cs">
+    <Content Include="TestCaseSourceTests\ToMemberData\Expected.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="TestAttributeTests\ToTheory\Input.cs">
+    <Content Include="TestCaseSourceTests\ToMemberData\Input.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="TestCaseTests\ToInlineData\Expected.cs">

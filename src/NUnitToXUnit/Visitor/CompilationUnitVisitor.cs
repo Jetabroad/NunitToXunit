@@ -14,11 +14,13 @@ namespace NUnitToXUnit.Visitor
 {
     public partial class NUnitToXUnitVisitor : CSharpSyntaxRewriter
     {
-        private readonly IConverterOptions _options;
+        private readonly Options options;
+        private readonly RequiresImports requires;
 
-        public NUnitToXUnitVisitor(IConverterOptions options)
+        public NUnitToXUnitVisitor(Options options)
         {
-            _options = options;
+            this.options = options;
+            this.requires = new RequiresImports();
         }
 
         public override SyntaxNode VisitCompilationUnit(CompilationUnitSyntax node)
@@ -28,12 +30,12 @@ namespace NUnitToXUnit.Visitor
             // Remember leading trivia (e.g. license header comments) so we can restore
             // it later. For some reason, manipulating the usings can remove it.
             var comment = xunitTree.GetLeadingTrivia();
-            var treeWithTriviaTrimmed = _options.ConvertAssert
+            var treeWithTriviaTrimmed = options.ConvertAssert
                 ? xunitTree.RemoveNUnitUsing().WithoutLeadingTrivia()
                 : xunitTree.WithoutLeadingTrivia();
 
             // add any usings that were required when visiting the tree
-            var additionalUsings = GenerateAdditionalUsings().ToArray();
+            var additionalUsings = GenerateAdditionalUsings(node.Usings).ToArray();
             var treeWithUsings = AddUsingsToCompilationUnit(treeWithTriviaTrimmed, additionalUsings);
 
             // restore the leading trivia to the new syntax tree. 
@@ -66,16 +68,28 @@ namespace NUnitToXUnit.Visitor
                 .WithUsings(List(existingUsings.Concat(additionalUsings).ToArray()));
         }
 
-        private IEnumerable<UsingDirectiveSyntax> GenerateAdditionalUsings()
+        private IEnumerable<UsingDirectiveSyntax> GenerateAdditionalUsings(SyntaxList<UsingDirectiveSyntax> usings)
         {
-            if (_options.RequiresSystemImport)
+            if (requires.System && !HasUsing("System"))
             {
-                yield return UsingDirective(IdentifierName("System")).NormalizeWhitespace();
+                yield return CreateUsing("System");
             }
-            if (_options.RequiresXUnitImport && _options.ConvertAssert)
+            if (requires.SystemCollectionsGeneric && !HasUsing("System.Collections.Generic"))
             {
-                yield return UsingDirective(IdentifierName("Xunit")).NormalizeWhitespace();
+                yield return CreateUsing("System.Collections.Generic");
             }
+            if (requires.XUnit && options.ConvertAssert && !HasUsing("Xunit"))
+            {
+                yield return CreateUsing("Xunit");
+            }
+
+            bool HasUsing(string identifier) =>
+                usings.Any(u => u.Name.ToString() == identifier);
+
+            UsingDirectiveSyntax CreateUsing(string identifier) =>
+                UsingDirective(IdentifierName(identifier))
+                    .NormalizeWhitespace()
+                    .WithTrailingTrivia(Whitespace(Environment.NewLine));
         }
     }
 }
