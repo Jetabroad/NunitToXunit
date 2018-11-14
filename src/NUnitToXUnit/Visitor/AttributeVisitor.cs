@@ -14,7 +14,7 @@ namespace NUnitToXUnit.Visitor
     {
         public override SyntaxNode VisitAttribute(AttributeSyntax node)
         {
-            return base.VisitAttribute(ReplaceAttribute(node));
+            return base.VisitAttribute(ReplaceAttribute(node).NormalizeWhitespace());
         }
 
         public override SyntaxNode VisitAttributeList(AttributeListSyntax node)

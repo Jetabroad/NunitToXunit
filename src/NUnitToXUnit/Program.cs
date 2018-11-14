@@ -22,7 +22,7 @@ namespace NUnitToXUnit
             foreach (var file in files)
             {
                 var nUnitTree = CSharpSyntaxTree.ParseText(File.ReadAllText(file)).GetRoot();
-                var xUnitTree = new NUnitToXUnitVisitor(new DefaultOption { ConvertAssert = convertAssert }).Visit(nUnitTree).NormalizeWhitespace();
+                var xUnitTree = new NUnitToXUnitVisitor(new DefaultOption { ConvertAssert = convertAssert }).Visit(nUnitTree);
                 File.WriteAllText(file, xUnitTree.ToFullString(), Encoding.UTF8);
             }
         }

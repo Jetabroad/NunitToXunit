@@ -61,7 +61,7 @@ namespace NUnitToXUnit.Visitor
         {
             var exceptionMessage = expectedException.Expression.ToString();
             var rawStatement = CreateAssertFromExceptionMessage(node);
-            var statementToAdd = CreateExtraAssert(exceptionMessage);
+            var statementToAdd = CreateExtraAssert(exceptionMessage).WithTriviaFrom(node.Body.Statements.First());
             return ReplaceMethodBody(rawStatement, node).AddBodyStatements(statementToAdd);
         }
 
@@ -85,12 +85,15 @@ namespace NUnitToXUnit.Visitor
 
         private static string CreateAssert(string exceptionType, MethodDeclarationSyntax node)
         {
-            return $"Assert.Throws<{exceptionType}>(() => { node.Body });";
+            string indentedBody = node.Body.ToString().Replace("\n", "\n    ");
+
+            return $@"Assert.Throws<{exceptionType}>(() =>
+            { indentedBody });";
         }
 
         private static MethodDeclarationSyntax ReplaceMethodBody(string rawStatement, MethodDeclarationSyntax node)
         {
-            var xUnitStatement = ParseStatement(rawStatement);
+            var xUnitStatement = ParseStatement(rawStatement).WithTriviaFrom(node.Body.Statements.First());
             var methodBody = node.Body.WithStatements(new SyntaxList<StatementSyntax>().Add(xUnitStatement));
             return node.WithBody(methodBody);
         }

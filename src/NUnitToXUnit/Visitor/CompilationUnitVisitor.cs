@@ -1,7 +1,9 @@
 ﻿// Copyright (c) 2018 Jetabroad Pty Limited. All Rights Reserved.
 // Licensed under the MIT license. See the LICENSE.md file in the project root for license information.
 
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -23,29 +25,57 @@ namespace NUnitToXUnit.Visitor
         {
             var xunitTree = (CompilationUnitSyntax)base.VisitCompilationUnit(node);
 
-            // For LeadingTrivia can be comments, newline or white space, and some file contain the document,
-            // summary or license on top of file as comment, that's need to keep it. 
+            // Remember leading trivia (e.g. license header comments) so we can restore
+            // it later. For some reason, manipulating the usings can remove it.
             var comment = xunitTree.GetLeadingTrivia();
+            var treeWithTriviaTrimmed = _options.ConvertAssert
+                ? xunitTree.RemoveNUnitUsing().WithoutLeadingTrivia()
+                : xunitTree.WithoutLeadingTrivia();
 
-            // remove all leading trivia from syntax tree.
-            xunitTree = xunitTree.WithoutLeadingTrivia();
-            var additionalUsings = new List<UsingDirectiveSyntax>();
+            // add any usings that were required when visiting the tree
+            var additionalUsings = GenerateAdditionalUsings().ToArray();
+            var treeWithUsings = AddUsingsToCompilationUnit(treeWithTriviaTrimmed, additionalUsings);
 
+            // restore the leading trivia to the new syntax tree. 
+            var treeWithTriviaRestored = treeWithUsings.WithLeadingTrivia(comment);
+
+            return treeWithTriviaRestored;
+        }
+
+        /// <summary>
+        /// Adds the usings to the compilation unit, adding a blank line after the last using
+        /// </summary>
+        private static CompilationUnitSyntax AddUsingsToCompilationUnit(CompilationUnitSyntax xunitTree, UsingDirectiveSyntax[] additionalUsings)
+        {
+            if (additionalUsings.Length == 0)
+                return xunitTree;
+
+            // ensure the last using has a blank line after it.
+            var lastUsing = additionalUsings.Length - 1;
+            additionalUsings[lastUsing] = additionalUsings[lastUsing].WithTrailingTrivia(Whitespace(Environment.NewLine + Environment.NewLine));
+            var existingUsings = xunitTree.Usings.ToArray();
+
+            // remove the existing usings, trim the leading trivia, then add all usings back in with the trailing space.
+            // this handles the cases of:
+            //   - no existing usings
+            //   - one existing using that will be replaced
+            //   - one existing using that will be appended to
+            return xunitTree
+                .RemoveNodes(existingUsings, SyntaxRemoveOptions.KeepNoTrivia)
+                .WithoutLeadingTrivia()
+                .WithUsings(List(existingUsings.Concat(additionalUsings).ToArray()));
+        }
+
+        private IEnumerable<UsingDirectiveSyntax> GenerateAdditionalUsings()
+        {
             if (_options.RequiresSystemImport)
             {
-                additionalUsings.Add(UsingDirective(IdentifierName("System")));
+                yield return UsingDirective(IdentifierName("System")).NormalizeWhitespace();
             }
             if (_options.RequiresXUnitImport && _options.ConvertAssert)
             {
-                additionalUsings.Add(UsingDirective(IdentifierName("Xunit")));
+                yield return UsingDirective(IdentifierName("Xunit")).NormalizeWhitespace();
             }
-
-            var newTree = xunitTree.AddUsings(additionalUsings.ToArray());
-
-            // restore to comment to the new syntax tree. 
-            newTree = newTree.WithLeadingTrivia(comment);
-
-            return _options.ConvertAssert ? newTree.RemoveNUnitUsing() : base.VisitCompilationUnit(newTree);
         }
     }
 }

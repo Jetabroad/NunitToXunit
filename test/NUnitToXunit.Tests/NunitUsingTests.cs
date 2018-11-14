@@ -8,6 +8,7 @@ namespace NUnitToXunit.Tests
     public class NunitUsingTests
     {
         [Theory]
+        [InlineData(nameof(NunitUsingTests), "KeepsOtherUsings")]
         [InlineData(nameof(NunitUsingTests), "ToXUnitUsing")]
         public void CompilationUnitVisitor_FromNUnitUsing_ToXUnitUsing(string testCategory, string testCase) =>
             SyntaxSnapshot.RunSnapshotTest(testCategory, testCase);
