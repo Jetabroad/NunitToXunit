@@ -20,7 +20,7 @@ namespace NUnitToXUnit.Testing
         };
 
         // field with default private visibility
-        public static readonly IEnumerable<object[]> enemies =
+        public static readonly object[][] enemies =
         {
             new object[] { "donald", "bugs"},
             new object[] { "marvin", "bugs"},

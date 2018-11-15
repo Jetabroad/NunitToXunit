@@ -112,7 +112,18 @@ namespace NUnitToXUnit.Features
                 .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
 
-        private static TypeSyntax WrapInEnumerable(TypeSyntax type) =>
-            ParseTypeName($"IEnumerable<{type}>").WithTrailingTrivia(Space);
+        private static TypeSyntax WrapInEnumerable(TypeSyntax type)
+        {
+            // very rough heuristic, if we have something like object[] make it IEnumerable<object[]>
+            // as required by xunit. But if the data type is already enumerable, like object[][]
+            // or IList<IList<object>> don't touch it
+            if (type.ToString() == "IEnumerable<object[]>"
+                || type.ToString().EndsWith("[][]")
+                || type.ToString().Count(c => c == '<') >= 2)
+            {
+                return type.WithoutLeadingTrivia();
+            }
+            return ParseTypeName($"IEnumerable<{type}>").WithTrailingTrivia(Space);
+        }
     }
 }
