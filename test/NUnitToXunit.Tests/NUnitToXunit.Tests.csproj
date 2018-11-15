@@ -21,6 +21,12 @@
     <Compile Remove="MemberAccessTests\ThatAssertionWithStringContaining\Expected.cs" />
     <Compile Remove="NUnitUsingTests\KeepsOtherUsings\Expected.cs" />
     <Compile Remove="NUnitUsingTests\KeepsOtherUsings\Input.cs" />
+    <Compile Remove="SetupTearDownTests\ToConstructor\Expected.cs" />
+    <Compile Remove="SetupTearDownTests\ToConstructor\Input.cs" />
+    <Compile Remove="SetupTearDownTests\ToDisposableWithExistingBaseClass\Expected.cs" />
+    <Compile Remove="SetupTearDownTests\ToDisposableWithExistingBaseClass\Input.cs" />
+    <Compile Remove="SetupTearDownTests\ToDisposable\Expected.cs" />
+    <Compile Remove="SetupTearDownTests\ToDisposable\Input.cs" />
     <Compile Remove="TestAttributeTests\ToFact\Expected.cs" />
     <Compile Remove="TestAttributeTests\ToFact\Input.cs" />
     <Compile Remove="TestFixtureTests\ToXUnitClass\Expected.cs" />
@@ -84,6 +90,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="NUnitUsingTests\KeepsOtherUsings\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SetupTearDownTests\ToConstructor\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SetupTearDownTests\ToConstructor\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SetupTearDownTests\ToDisposableWithExistingBaseClass\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SetupTearDownTests\ToDisposableWithExistingBaseClass\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SetupTearDownTests\ToDisposable\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SetupTearDownTests\ToDisposable\Input.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="TestAttributeTests\ToFact\Expected.cs">

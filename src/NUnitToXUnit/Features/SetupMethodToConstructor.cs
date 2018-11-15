@@ -24,7 +24,7 @@ namespace NUnitToXUnit.Features
 
             // create a constructor
             var constructor = ConstructorDeclaration(Identifier(node.Identifier.Text))
-                .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword)))
+                .WithModifiers(TokenList(Token(SyntaxKind.PublicKeyword))).NormalizeWhitespace()
                 .WithTriviaFrom(setUpMethod)
                 .WithBody(setUpMethod.Body);
 
