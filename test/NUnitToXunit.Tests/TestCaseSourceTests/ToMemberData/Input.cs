@@ -20,7 +20,7 @@ namespace NUnitToXUnit.Testing
         };
 
         // field with default private visibility
-        object[] enemies =
+        object[][] enemies =
         {
             new object[] { "donald", "bugs"},
             new object[] { "marvin", "bugs"},
