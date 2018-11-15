@@ -14,7 +14,7 @@ namespace NUnitToXUnit.Visitor
     {
         public override SyntaxNode VisitMemberAccessExpression(MemberAccessExpressionSyntax node)
         {
-            _options.RequiresXUnitImport = true;
+            requires.XUnit = true;
             return base.VisitMemberAccessExpression(ReplaceMemberAccessExpression(node));
         }
 

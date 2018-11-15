@@ -1,13 +1,10 @@
 ﻿// Copyright (c) 2018 Jetabroad Pty Limited. All Rights Reserved.
 // Licensed under the MIT license. See the LICENSE.md file in the project root for license information.
 
-namespace NUnitToXUnit.Testing
+namespace NUnitToXUnit
 {
-    public class Unittest
+    public class Options
     {
-        [Xunit.Theory]
-        public void TestAdd(string key)
-        {
-        }
+        public bool ConvertAssert { get; set; }
     }
 }

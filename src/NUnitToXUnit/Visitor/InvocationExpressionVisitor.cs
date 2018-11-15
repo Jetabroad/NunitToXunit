@@ -16,8 +16,8 @@ namespace NUnitToXUnit.Visitor
 
         public override SyntaxNode VisitInvocationExpression(InvocationExpressionSyntax node)
         {
-            if (!_options.ConvertAssert) return node;
-            _options.RequiresXUnitImport = true;
+            if (!options.ConvertAssert) return node;
+            requires.XUnit = true;
             return base.VisitInvocationExpression(ReplaceInvocationExpression(node));
         }
 

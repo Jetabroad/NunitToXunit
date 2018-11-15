@@ -5,11 +5,12 @@ using Xunit;
 
 namespace NUnitToXunit.Tests
 {
-    public class TestAttributeTests
+    public class TestCaseSourceTests
     {
         [Theory]
-        [InlineData(nameof(TestAttributeTests), "ToFact")]
-        public void AttributeVisitor_FromTest_ToFact(string testCategory, string testCase) =>
+        [InlineData(nameof(TestCaseSourceTests), "ToMemberData")]
+        [InlineData(nameof(TestCaseSourceTests), "ToMemberDataWithTheory")]
+        public void Convert(string testCategory, string testCase) =>
             SyntaxSnapshot.RunSnapshotTest(testCategory, testCase);
     }
 }
