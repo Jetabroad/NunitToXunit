@@ -1,11 +1,14 @@
 ﻿// Copyright (c) 2018 Jetabroad Pty Limited. All Rights Reserved.
 // Licensed under the MIT license. See the LICENSE.md file in the project root for license information.
 
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NUnitToXUnit.Extensions;
+using NUnitToXUnit.Features.TestCaseSourceToMemberData;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace NUnitToXUnit.Visitor
@@ -14,17 +17,18 @@ namespace NUnitToXUnit.Visitor
     {
         public override SyntaxNode VisitMethodDeclaration(MethodDeclarationSyntax node)
         {
-            return base.VisitMethodDeclaration(ReplaceMethodDeclaration(node));
-        }
-
-        private static MethodDeclarationSyntax ReplaceMethodDeclaration(MethodDeclarationSyntax node)
-        {
-            var hasExpectedException = node.HasExpectedExceptionAttribute();
-            return hasExpectedException ? ReplaceFromExpectedExceptionToAssertThrows(node) : node;
+            var withAssertThrows = ReplaceFromExpectedExceptionToAssertThrows(node);
+            var visited = (MethodDeclarationSyntax)base.VisitMethodDeclaration(withAssertThrows);
+            var result = AddTheoryIfMemberDataPresent.Convert(visited);
+            return result;
         }
 
         private static MethodDeclarationSyntax ReplaceFromExpectedExceptionToAssertThrows(MethodDeclarationSyntax method)
         {
+            if(!method.HasExpectedExceptionAttribute())
+            {
+                return method;
+            }
             var newBody = ReplaceMethodBody(method);
             return ReplaceMethodAttributes(newBody);
         }

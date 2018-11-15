@@ -9,7 +9,8 @@ namespace NUnitToXunit.Tests
     {
         [Theory]
         [InlineData(nameof(TestCaseSourceTests), "ToMemberData")]
-        public void ClassVisitor_FromTestCaseSource_ToMemberData(string testCategory, string testCase) =>
+        [InlineData(nameof(TestCaseSourceTests), "ToMemberDataWithTheory")]
+        public void Convert(string testCategory, string testCase) =>
             SyntaxSnapshot.RunSnapshotTest(testCategory, testCase);
     }
 }

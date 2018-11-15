@@ -9,9 +9,9 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
-namespace NUnitToXUnit.Features
+namespace NUnitToXUnit.Features.TestCaseSourceToMemberData
 {
-    class TestCaseSourceToMemberData
+    class MembersToPublicStaticEnumerable
     {
         private static readonly SyntaxTrivia Space = Whitespace(" ");
         private static readonly SyntaxTokenList PublicStatic =

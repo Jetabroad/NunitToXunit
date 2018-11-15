@@ -5,6 +5,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NUnitToXUnit.Features;
+using NUnitToXUnit.Features.TestCaseSourceToMemberData;
 
 namespace NUnitToXUnit.Visitor
 {
@@ -14,7 +15,7 @@ namespace NUnitToXUnit.Visitor
         {
             var withConstructor = SetUpMethodToConstructor.Convert(node);
             var withDisposable = TearDownMethodToDisposable.Convert(withConstructor, requires);
-            var withConvertedMemberData = TestCaseSourceToMemberData.Convert(withDisposable, requires);
+            var withConvertedMemberData = MembersToPublicStaticEnumerable.Convert(withDisposable, requires);
             return base.VisitClassDeclaration(withConvertedMemberData);
         }
     }
