@@ -23,6 +23,8 @@
     <Compile Remove="NUnitUsingTests\KeepsOtherUsings\Input.cs" />
     <Compile Remove="TestAttributeTests\ToFact\Expected.cs" />
     <Compile Remove="TestAttributeTests\ToFact\Input.cs" />
+    <Compile Remove="TestCaseSourceTests\ToMemberDataWithTheory\Expected.cs" />
+    <Compile Remove="TestCaseSourceTests\ToMemberDataWithTheory\Input.cs" />
     <Compile Remove="TestFixtureTests\ToXUnitClass\Expected.cs" />
     <Compile Remove="TestFixtureTests\ToXUnitClass\Input.cs" />
     <Compile Remove="CategoryTests\ToTrait\Expected.cs" />
@@ -90,6 +92,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="TestAttributeTests\ToFact\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestCaseSourceTests\ToMemberDataWithTheory\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestCaseSourceTests\ToMemberDataWithTheory\Input.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="TestFixtureTests\ToXUnitClass\Expected.cs">
