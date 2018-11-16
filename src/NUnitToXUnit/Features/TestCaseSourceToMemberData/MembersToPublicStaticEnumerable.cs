@@ -24,7 +24,7 @@ namespace NUnitToXUnit.Features.TestCaseSourceToMemberData
                 Token(SyntaxKind.ReadOnlyKeyword).WithTrailingTrivia(Space)
             );
 
-        public static ClassDeclarationSyntax Convert(ClassDeclarationSyntax node, RequiresImports requires)
+        public static ClassDeclarationSyntax Convert(ClassDeclarationSyntax node, RequiredUsings requires)
         {
             // get all the TestCaseSource attributes
             var testCaseSources = FindTestCaseSourceAttributes(node);
