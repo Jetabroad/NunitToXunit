@@ -3,7 +3,7 @@
 
 namespace NUnitToXUnit
 {
-    public class RequiresImports
+    public class RequiredUsings
     {
         public bool System { get; set; }
         public bool XUnit { get; set; }

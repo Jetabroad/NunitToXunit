@@ -13,7 +13,7 @@ namespace NUnitToXUnit.Features
 {
     public class TearDownMethodToDisposable
     {
-        public static ClassDeclarationSyntax Convert(ClassDeclarationSyntax node, RequiresImports requires)
+        public static ClassDeclarationSyntax Convert(ClassDeclarationSyntax node, RequiredUsings requires)
         {
             var tearDownMethod = node.FindMethodWithAttribute("TearDown").SingleOrDefault();
 

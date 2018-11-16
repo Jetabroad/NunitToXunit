@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) 2018 Jetabroad Pty Limited. All Rights Reserved.
+// Licensed under the MIT license. See the LICENSE.md file in the project root for license information.
+
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
