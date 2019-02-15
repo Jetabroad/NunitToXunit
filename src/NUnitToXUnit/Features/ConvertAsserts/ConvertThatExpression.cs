@@ -154,7 +154,7 @@ namespace NUnitToXUnit.Features.ConvertAsserts
         {
             if (ThatAssertionsCompareArgument.TryGetValue(expressionName, out string compareReplacement))
             {
-                return CreateXUnitComparsion(compareReplacement, memberAccessExpression, expectedArgument, actualArgument);
+                return CreateXUnitComparison(compareReplacement, memberAccessExpression, expectedArgument, actualArgument);
             }
 
             if (ThatAssertionsContainsArgument.TryGetValue(expressionName, out string containsReplacement))
@@ -171,7 +171,7 @@ namespace NUnitToXUnit.Features.ConvertAsserts
             return null;
         }
 
-        private static InvocationExpressionSyntax CreateXUnitComparsion(
+        private static InvocationExpressionSyntax CreateXUnitComparison(
             string compareReplacement,
             MemberAccessExpressionSyntax memberAccessExpression,
             ArgumentSyntax expectedArgument,
@@ -180,7 +180,7 @@ namespace NUnitToXUnit.Features.ConvertAsserts
             var assertExpression = CreateAssertMemberAccessExpression(compareReplacement);
             if (memberAccessExpression.IsCollectionSizeExpression())
             {
-                return CreateXUnitComparsionForCollection(assertExpression, expectedArgument, actualArgument);
+                return CreateXUnitComparisonForCollection(assertExpression, expectedArgument, actualArgument);
             }
             return InvocationExpression(assertExpression, ArgumentList(SeparatedList(new[] { expectedArgument, actualArgument })));
         }
@@ -231,7 +231,7 @@ namespace NUnitToXUnit.Features.ConvertAsserts
             return InvocationExpression(assertExpression, argumentList);
         }
 
-        private static InvocationExpressionSyntax CreateXUnitComparsionForCollection(
+        private static InvocationExpressionSyntax CreateXUnitComparisonForCollection(
             MemberAccessExpressionSyntax assertExpression,
             ArgumentSyntax expectedArgument,
             ArgumentSyntax actualArgument)
