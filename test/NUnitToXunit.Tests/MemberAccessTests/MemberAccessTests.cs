@@ -15,7 +15,7 @@ namespace NUnitToXunit.Tests
         [InlineData(nameof(MemberAccessTests), "ThatAssertionWithStringContaining")]
         [InlineData(nameof(MemberAccessTests), "ThatAssertionsWithGenericType")]
         [InlineData(nameof(MemberAccessTests), "ThatAssertionsCollection")]
-        [InlineData(nameof(MemberAccessTests), "CompareOperaterAssertion")]
+        [InlineData(nameof(MemberAccessTests), "CompareOperatorAssertion")]
         [InlineData(nameof(MemberAccessTests), "ThatAssertionsWithCompareOperator")]
         public void MemberAccessVisitor_FromNUnitAssert_ToXUnitAssertion(string testCategory, string testCase) =>
             SyntaxSnapshot.RunSnapshotTest(testCategory, testCase);

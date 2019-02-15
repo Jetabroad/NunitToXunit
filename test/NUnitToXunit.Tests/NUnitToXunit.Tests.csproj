@@ -10,8 +10,8 @@
     <Compile Remove="ExpectedExceptionTests\ToAssertThrowsString\Input.cs" />
     <Compile Remove="MemberAccessTests\HasMember\Expected.cs" />
     <Compile Remove="MemberAccessTests\HasMember\Input.cs" />
-    <Compile Remove="MemberAccessTests\CompareOperaterAssertion\Expected.cs" />
-    <Compile Remove="MemberAccessTests\CompareOperaterAssertion\Input.cs" />
+    <Compile Remove="MemberAccessTests\CompareOperatorAssertion\Expected.cs" />
+    <Compile Remove="MemberAccessTests\CompareOperatorAssertion\Input.cs" />
     <Compile Remove="MemberAccessTests\ThatAssertionsCollection\Expected.cs" />
     <Compile Remove="MemberAccessTests\ThatAssertionsCollection\Input.cs" />
     <Compile Remove="MemberAccessTests\ThatAssertionsWithCompareOperator\Expected.cs" />
@@ -58,10 +58,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="MemberAccessTests\CompareOperaterAssertion\Expected.cs">
+    <Content Include="MemberAccessTests\CompareOperatorAssertion\Expected.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="MemberAccessTests\CompareOperaterAssertion\Input.cs">
+    <Content Include="MemberAccessTests\CompareOperatorAssertion\Input.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="MemberAccessTests\HasMember\Expected.cs">
@@ -208,7 +208,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="MemberAccessTests\CompareOperaterAssertion\Input.cs">
+    <EmbeddedResource Include="MemberAccessTests\CompareOperatorAssertion\Input.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
