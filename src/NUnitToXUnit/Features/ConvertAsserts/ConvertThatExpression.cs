@@ -40,7 +40,7 @@ namespace NUnitToXUnit.Features.ConvertAsserts
 
         private static InvocationExpressionSyntax ReplaceThatAssert(InvocationExpressionSyntax node)
         {
-            if (!IsAssertWithTwoArguments(node)) return node;
+            if (!node.IsAssertThatExpression()) return node;
 
             var actual = node.ArgumentList.Arguments[0];
             var expression = node.ArgumentList.Arguments[1].Expression;
@@ -208,13 +208,6 @@ namespace NUnitToXUnit.Features.ConvertAsserts
         private static bool IsCompareOperatorAssert(InvocationExpressionSyntax node, string expressionName)
         {
             return !string.IsNullOrEmpty(expressionName) && (CompareOperatorAssertions.ContainsKey(expressionName) && node.ArgumentList.Arguments.Count == 2);
-        }
-
-        private static bool IsAssertWithTwoArguments(InvocationExpressionSyntax node)
-        {
-            // Right now we do for some subset of That assertions, this just skipping if we can not handled.
-            // And still keep the old code to let developer convert manually.
-            return node.IsAssertThatExpression() && node.ArgumentList.Arguments.Count == 2;
         }
 
         private static InvocationExpressionSyntax CreateCompareOperatorAssert(

@@ -18,6 +18,8 @@
     <Compile Remove="MemberAccessTests\ThatAssertionsWithCompareOperator\Input.cs" />
     <Compile Remove="MemberAccessTests\ThatAssertionsWithGenericType\Expected.cs" />
     <Compile Remove="MemberAccessTests\ThatAssertionsWithGenericType\Input.cs" />
+    <Compile Remove="MemberAccessTests\ThatAssertionsWithMessageParameter\Expected.cs" />
+    <Compile Remove="MemberAccessTests\ThatAssertionsWithMessageParameter\Input.cs" />
     <Compile Remove="MemberAccessTests\ThatAssertionWithStringContaining\Expected.cs" />
     <Compile Remove="NUnitUsingTests\KeepsOtherUsings\Expected.cs" />
     <Compile Remove="NUnitUsingTests\KeepsOtherUsings\Input.cs" />
@@ -42,8 +44,6 @@
     <Compile Remove="ExpectedExceptionTests\ToAssertThrowsTypeOf\Expected.cs" />
     <Compile Remove="ExpectedExceptionTests\ToAssertThrowsTypeOf\Input.cs" />
     <Compile Remove="ExpectedExceptionTests\ToAssertThrowsString\Expected.cs" />
-    <Compile Remove="MemberAccessTests\ThatAssertionsWithUnhandled\Expected.cs" />
-    <Compile Remove="MemberAccessTests\ThatAssertionsWithUnhandled\Input.cs" />
     <Compile Remove="MemberAccessTests\ThatAssertions\Expected.cs" />
     <Compile Remove="MemberAccessTests\ThatAssertions\Input.cs" />
     <Compile Remove="MemberAccessTests\ThatAssertionWithStringContaining\Input.cs" />
@@ -83,6 +83,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="MemberAccessTests\ThatAssertionsWithGenericType\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\ThatAssertionsWithMessageParameter\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\ThatAssertionsWithMessageParameter\Input.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="MemberAccessTests\ThatAssertionWithStringContaining\Expected.cs">
@@ -158,12 +164,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="ExpectedExceptionTests\ToAssertThrowsTypeOf\Input.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MemberAccessTests\ThatAssertionsWithUnhandled\Expected.cs">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="MemberAccessTests\ThatAssertionsWithUnhandled\Input.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="MemberAccessTests\ThatAssertions\Expected.cs">
