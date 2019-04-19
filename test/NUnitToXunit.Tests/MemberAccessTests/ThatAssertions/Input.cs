@@ -33,6 +33,8 @@ namespace NUnitToXUnit.Testing
 
             Assert.That(actual, Is.SameAs(foo));
             Assert.That(actual, Is.Not.SameAs(bar));
+
+            Assert.That(actual == expected);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2018 Jetabroad Pty Limited. All Rights Reserved.
 // Licensed under the MIT license. See the LICENSE.md file in the project root for license information.
 
+using System;
 using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -42,12 +43,30 @@ namespace NUnitToXUnit.Features.ConvertAsserts
         {
             if (!node.IsAssertThatExpression()) return node;
 
+            if (node.ArgumentList.Arguments.Count == 1)
+            {
+                return CreateAssertTrueExpression(node, node.ArgumentList.Arguments[0]);
+            }
+
             var actual = node.ArgumentList.Arguments[0];
             var expression = node.ArgumentList.Arguments[1].Expression;
 
             return ThatAssertionsSingleArgument.ContainsKey(expression.ToString())
                 ? CreateSingleArgumentExpression(node, expression, actual)
                 : TryReplaceInvocationExpression(node, expression, actual);
+        }
+
+        private static InvocationExpressionSyntax CreateAssertTrueExpression(InvocationExpressionSyntax node, ArgumentSyntax argumentSyntax)
+        {
+            return InvocationExpression(
+                MemberAccessExpression(
+                    SyntaxKind.SimpleMemberAccessExpression,
+                    IdentifierName("Assert").WithTriviaFrom(node),
+                    IdentifierName("True")
+                ),
+                ArgumentList(SingletonSeparatedList(argumentSyntax))
+            )
+            .NormalizeWhitespace();
         }
 
         private static InvocationExpressionSyntax CreateSingleArgumentExpression(
