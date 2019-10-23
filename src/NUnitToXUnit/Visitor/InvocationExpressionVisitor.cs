@@ -18,9 +18,10 @@ namespace NUnitToXUnit.Visitor
             }
 
             var convertedThat = ConvertThatExpression.Convert(node);
+            var convertedCollectionAssert = ConvertCollectionAssert.Convert(convertedThat);
             requires.XUnit = true;
 
-            return base.VisitInvocationExpression(convertedThat);
+            return base.VisitInvocationExpression(convertedCollectionAssert);
         }
     }
 }
