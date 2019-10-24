@@ -10,6 +10,9 @@ namespace NUnitToXUnit.Extensions
         public static bool IsAssertExpression(this MemberAccessExpressionSyntax node) =>
             node.Expression.ToString() == "Assert";
 
+        public static bool IsCollectionAssertExpression(this InvocationExpressionSyntax node) =>
+            node.Expression.ToString().StartsWith("CollectionAssert");
+
         public static bool IsAssertThatExpression(this InvocationExpressionSyntax node) =>
             node.Expression.ToString() == "Assert.That";
 
