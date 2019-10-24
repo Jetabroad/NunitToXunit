@@ -17,11 +17,13 @@ namespace NUnitToXUnit.Visitor
                 return node;
             }
 
-            var convertedThat = ConvertThatExpression.Convert(node);
-            var convertedCollectionAssert = ConvertCollectionAssert.Convert(convertedThat);
+            var converted = node
+                .ConvertThatExpression()
+                .ConvertCollectionAssert();
+            
             requires.XUnit = true;
 
-            return base.VisitInvocationExpression(convertedCollectionAssert);
+            return base.VisitInvocationExpression(converted);
         }
     }
 }

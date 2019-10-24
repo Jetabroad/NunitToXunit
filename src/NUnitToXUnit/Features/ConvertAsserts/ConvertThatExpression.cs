@@ -13,11 +13,11 @@ namespace NUnitToXUnit.Features.ConvertAsserts
     /// <summary>
     /// Convert Assert.That
     /// </summary>
-    static class ConvertThatExpression
+    static partial class InvocationExpressionConvertExtension
     {
         private const string NUnitStringCompareIgnoreCase = "IgnoreCase";
 
-        public static InvocationExpressionSyntax Convert(InvocationExpressionSyntax originalNode)
+        public static InvocationExpressionSyntax ConvertThatExpression(this InvocationExpressionSyntax originalNode)
         {
             var node = ReplaceFailAssert(originalNode);
             node = ReplaceThatAssert(node);

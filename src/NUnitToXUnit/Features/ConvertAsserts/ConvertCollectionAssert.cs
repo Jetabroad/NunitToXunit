@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NUnitToXUnit.Extensions;
@@ -9,9 +6,9 @@ using static Microsoft.CodeAnalysis.CSharp.SyntaxFactory;
 
 namespace NUnitToXUnit.Features.ConvertAsserts
 {
-    public class ConvertCollectionAssert
+    public static partial class InvocationExpressionConvertExtension
     {
-        public static InvocationExpressionSyntax Convert(InvocationExpressionSyntax originalNode)
+        public static InvocationExpressionSyntax ConvertCollectionAssert(this InvocationExpressionSyntax originalNode)
         {
             if (!originalNode.IsCollectionAssertExpression()) return originalNode;
 
