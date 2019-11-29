@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <Compile Remove="ExpectedExceptionTests\ToAssertThrowsString\Input.cs" />
+    <Compile Remove="MemberAccessTests\CollectionAssertTests\Expected.cs" />
+    <Compile Remove="MemberAccessTests\CollectionAssertTests\Input.cs" />
     <Compile Remove="MemberAccessTests\HasMember\Expected.cs" />
     <Compile Remove="MemberAccessTests\HasMember\Input.cs" />
     <Compile Remove="MemberAccessTests\CompareOperatorAssertion\Expected.cs" />
@@ -58,6 +60,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="MemberAccessTests\CollectionAssertTests\Expected.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MemberAccessTests\CollectionAssertTests\Input.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="MemberAccessTests\CompareOperatorAssertion\Expected.cs">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

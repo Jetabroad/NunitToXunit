@@ -27,7 +27,7 @@ namespace NUnitToXUnit.Features.ConvertAsserts
                     IdentifierName(Assertions[node.Name.ToString()]));
         }
 
-        private static readonly IReadOnlyDictionary<string, string> Assertions = new Dictionary<string, string>
+        public static readonly IReadOnlyDictionary<string, string> Assertions = new Dictionary<string, string>
         {
             ["AreEqual"] = "Equal",
             ["AreNotEqual"] = "NotEqual",
