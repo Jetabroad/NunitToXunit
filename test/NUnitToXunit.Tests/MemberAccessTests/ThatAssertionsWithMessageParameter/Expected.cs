@@ -15,8 +15,8 @@ namespace NUnitToXUnit.Testing
 
             Assert.Null(actual);
             Assert.NotEmpty(actual);
-            Assert.That(actual, expression: Is.NotEqualTo(expected), message: "Foo");
-            Assert.That(actual, expression: Is.EqualTo(expected), message: "Bar");
+            Assert.Equal(expected, actual);
+            Assert.NotEqual(8, actual);
         }
     }
 }

@@ -11,10 +11,10 @@ namespace NUnitToXUnit.Testing
             var expected = 7;
             var actual = 2 + 5;
 
-            Assert.That(actual, expression: Is.Null);
-            Assert.That(actual, expression: Is.Not.Empty);
-            Assert.That(actual, expression: Is.NotEqualTo(expected), message: "Foo");
-            Assert.That(actual, expression: Is.EqualTo(expected), message: "Bar");
+            Assert.That(actual, expression: Is.Null, $"{actual} is not null");
+            Assert.That(actual, expression: Is.Not.Empty, "this result should not null");
+            Assert.That(actual, expression: Is.EqualTo(expected), $"expected is: {expected} and actual is : {actual}");
+            Assert.That(actual, expression: Is.Not.EqualTo(8), "some error message");
         }
     }
 }

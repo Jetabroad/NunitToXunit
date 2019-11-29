@@ -1,6 +1,7 @@
 ﻿// Copyright (c) 2018 Jetabroad Pty Limited. All Rights Reserved.
 // Licensed under the MIT license. See the LICENSE.md file in the project root for license information.
 
+using System;
 using System.Collections.Generic;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -40,7 +41,12 @@ namespace NUnitToXUnit.Features.ConvertAsserts
 
         private static InvocationExpressionSyntax ReplaceThatAssert(InvocationExpressionSyntax node)
         {
-            if (!IsAssertWithTwoArguments(node)) return node;
+            if (!node.IsAssertThatExpression()) return node;
+
+            if (node.ArgumentList.Arguments.Count == 1)
+            {
+                return CreateAssertTrueExpression(node, node.ArgumentList.Arguments[0]);
+            }
 
             var actual = node.ArgumentList.Arguments[0];
             var expression = node.ArgumentList.Arguments[1].Expression;
@@ -48,6 +54,19 @@ namespace NUnitToXUnit.Features.ConvertAsserts
             return ThatAssertionsSingleArgument.ContainsKey(expression.ToString())
                 ? CreateSingleArgumentExpression(node, expression, actual)
                 : TryReplaceInvocationExpression(node, expression, actual);
+        }
+
+        private static InvocationExpressionSyntax CreateAssertTrueExpression(InvocationExpressionSyntax node, ArgumentSyntax argumentSyntax)
+        {
+            return InvocationExpression(
+                MemberAccessExpression(
+                    SyntaxKind.SimpleMemberAccessExpression,
+                    IdentifierName("Assert").WithTriviaFrom(node),
+                    IdentifierName("True")
+                ),
+                ArgumentList(SingletonSeparatedList(argumentSyntax))
+            )
+            .NormalizeWhitespace();
         }
 
         private static InvocationExpressionSyntax CreateSingleArgumentExpression(
@@ -208,13 +227,6 @@ namespace NUnitToXUnit.Features.ConvertAsserts
         private static bool IsCompareOperatorAssert(InvocationExpressionSyntax node, string expressionName)
         {
             return !string.IsNullOrEmpty(expressionName) && (CompareOperatorAssertions.ContainsKey(expressionName) && node.ArgumentList.Arguments.Count == 2);
-        }
-
-        private static bool IsAssertWithTwoArguments(InvocationExpressionSyntax node)
-        {
-            // Right now we do for some subset of That assertions, this just skipping if we can not handled.
-            // And still keep the old code to let developer convert manually.
-            return node.IsAssertThatExpression() && node.ArgumentList.Arguments.Count == 2;
         }
 
         private static InvocationExpressionSyntax CreateCompareOperatorAssert(
