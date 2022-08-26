@@ -35,6 +35,8 @@ namespace NUnitToXUnit.Testing
 
             Assert.Same(foo, actual);
             Assert.NotSame(bar, actual);
+
+            Assert.True(actual == expected);
         }
     }
 }
